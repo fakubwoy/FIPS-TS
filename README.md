@@ -12,7 +12,7 @@ npm run dev
 
 ## Frontend
 
-To run the backend, follow these steps:
+To run the frontend, follow these steps:
 
 ```bash
 cd frontend
