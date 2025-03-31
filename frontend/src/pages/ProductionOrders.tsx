@@ -8,6 +8,8 @@ interface ProductionOrdersProps {
   currentPageLM: number;
   currentPageMS: number;
   onPageChange: (key: 'LM' | 'MS', direction: 'next' | 'prev') => void;
+  totalItemsLM: number;
+  totalItemsMS: number;
 }
 
 const ProductionOrders = ({
@@ -15,7 +17,9 @@ const ProductionOrders = ({
   dataMS,
   currentPageLM,
   currentPageMS,
-  onPageChange
+  onPageChange,
+  totalItemsLM,
+  totalItemsMS
 }: ProductionOrdersProps) => {
   const validateItem = (item: any) => {
     const errors: string[] = [];
@@ -25,7 +29,7 @@ const ProductionOrders = ({
     if (item["Production Qty"] <= 0) errors.push("Invalid Production Quantity");
     if (!item["Rate"]) errors.push("Missing Rate");
     if (item["Rate"] <= 0) errors.push("Invalid Rate");
-    if (item["Total WIP Value"] < 0||!item["Total WIP Value"]) errors.push("Invalid WIP Value");
+    if (item["Total WIP Value"] < 0 || !item["Total WIP Value"]) errors.push("Invalid WIP Value");
 
     return errors;
   };
@@ -66,7 +70,7 @@ const ProductionOrders = ({
         currentPage={currentPageLM}
         onPrev={() => onPageChange('LM', 'prev')}
         onNext={() => onPageChange('LM', 'next')}
-        dataLength={dataLM.length}
+        totalItems={totalItemsLM}
       />
 
       <h3 className="mb-4 mt-5">Production Orders - MS</h3>
@@ -103,7 +107,7 @@ const ProductionOrders = ({
         currentPage={currentPageMS}
         onPrev={() => onPageChange('MS', 'prev')}
         onNext={() => onPageChange('MS', 'next')}
-        dataLength={dataMS.length}
+        totalItems={totalItemsMS}
       />
     </div>
   );

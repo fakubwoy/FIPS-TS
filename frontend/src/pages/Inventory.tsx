@@ -6,9 +6,10 @@ interface InventoryProps {
   data: any[];
   currentPage: number;
   onPageChange: (direction: 'next' | 'prev') => void;
+  totalItems: number;
 }
 
-const Inventory = ({ data, currentPage, onPageChange }: InventoryProps) => {
+const Inventory = ({ data, currentPage, onPageChange, totalItems }: InventoryProps) => {
   const validateItem = (item: any) => {
     const errors: string[] = [];
     
@@ -51,7 +52,7 @@ const Inventory = ({ data, currentPage, onPageChange }: InventoryProps) => {
         currentPage={currentPage}
         onPrev={() => onPageChange('prev')}
         onNext={() => onPageChange('next')}
-        dataLength={data.length}
+        totalItems={totalItems}
       />
     </div>
   );

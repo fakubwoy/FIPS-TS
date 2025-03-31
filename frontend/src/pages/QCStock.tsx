@@ -6,9 +6,10 @@ interface QCStockProps {
   data: any[];
   currentPage: number;
   onPageChange: (direction: 'next' | 'prev') => void;
+  totalItems: number;
 }
 
-const QCStock = ({ data, currentPage, onPageChange }: QCStockProps) => {
+const QCStock = ({ data, currentPage, onPageChange, totalItems }: QCStockProps) => {
   const validateItem = (item: any) => {
     const errors: string[] = [];
     
@@ -51,7 +52,7 @@ const QCStock = ({ data, currentPage, onPageChange }: QCStockProps) => {
         currentPage={currentPage}
         onPrev={() => onPageChange('prev')}
         onNext={() => onPageChange('next')}
-        dataLength={data.length}
+        totalItems={totalItems}
       />
     </div>
   );

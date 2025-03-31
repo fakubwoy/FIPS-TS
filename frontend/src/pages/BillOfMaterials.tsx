@@ -8,6 +8,8 @@ interface BillOfMaterialsProps {
   currentPageLM: number;
   currentPageMS: number;
   onPageChange: (key: 'LM' | 'MS', direction: 'next' | 'prev') => void;
+  totalItemsLM: number;
+  totalItemsMS: number;
 }
 
 const BillOfMaterials = ({
@@ -15,7 +17,9 @@ const BillOfMaterials = ({
   dataMS,
   currentPageLM,
   currentPageMS,
-  onPageChange
+  onPageChange,
+  totalItemsLM,
+  totalItemsMS
 }: BillOfMaterialsProps) => {
   const validateItem = (item: any) => {
     const errors: string[] = [];
@@ -72,7 +76,7 @@ const BillOfMaterials = ({
         currentPage={currentPageLM}
         onPrev={() => onPageChange('LM', 'prev')}
         onNext={() => onPageChange('LM', 'next')}
-        dataLength={dataLM.length}
+        totalItems={totalItemsLM}
       />
 
       <h3 className="mb-4 mt-5">Bill of Materials - MS</h3>
@@ -115,7 +119,7 @@ const BillOfMaterials = ({
         currentPage={currentPageMS}
         onPrev={() => onPageChange('MS', 'prev')}
         onNext={() => onPageChange('MS', 'next')}
-        dataLength={dataMS.length}
+        totalItems={totalItemsMS}
       />
     </div>
   );
