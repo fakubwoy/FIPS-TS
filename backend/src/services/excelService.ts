@@ -3,7 +3,6 @@ import path from 'path';
 import { ProcessedExcelData, StockItem, BomItem, ProductionOrder } from '../types/types';
 
 export const processExcel = async (filePath: string): Promise<ProcessedExcelData> => {
-    // Resolve to absolute path
     const absolutePath = path.resolve(filePath);
     
     const workbook = XLSX.readFile(absolutePath);

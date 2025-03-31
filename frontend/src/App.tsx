@@ -111,7 +111,6 @@ function App() {
 
 export default App;
 
-// Simple Home component
 const Home = ({ combinedStock }: { combinedStock: CombinedStockItem[] }) => (
   <div className="home-container">
     <h2>Combined Stock Overview</h2>
