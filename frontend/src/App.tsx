@@ -106,6 +106,13 @@ function App() {
     return filtered;
   };
 
+  const calculateProposedPO = (difference: number) => {
+    if (difference >= 0) return 0; 
+    
+    const absoluteDifference = Math.abs(difference);
+    return Math.ceil(absoluteDifference / 100) * 100;
+  };
+
   const analysisLM = filterAnalysisByType('LM');
   const analysisMS = filterAnalysisByType('MS');
 
@@ -152,6 +159,7 @@ function App() {
                         <th>Required Qty</th>
                         <th>Available Qty</th>
                         <th>Difference</th>
+                        <th>Proposed PO</th>
                         <th>Status</th>
                         <th>Details</th>
                       </tr>
@@ -166,6 +174,7 @@ function App() {
                           <td>{item.requiredQuantity.toFixed(2)}</td>
                           <td>{item.totalAvailable.toFixed(2)}</td>
                           <td>{Math.abs(item.difference).toFixed(2)}</td>
+                          <td>{calculateProposedPO(item.difference)}</td>
                           <td>
                             <span className={item.status === 'Shortage' ? 'error-text' : 'success-text'}>
                               {item.status}
@@ -206,6 +215,7 @@ function App() {
                         <th>Required Qty</th>
                         <th>Available Qty</th>
                         <th>Difference</th>
+                        <th>Proposed PO</th>
                         <th>Status</th>
                         <th>Details</th>
                       </tr>
@@ -220,6 +230,7 @@ function App() {
                           <td>{item.requiredQuantity.toFixed(2)}</td>
                           <td>{item.totalAvailable.toFixed(2)}</td>
                           <td>{Math.abs(item.difference).toFixed(2)}</td>
+                          <td>{calculateProposedPO(item.difference)}</td>
                           <td>
                             <span className={item.status === 'Shortage' ? 'error-text' : 'success-text'}>
                               {item.status}
@@ -355,6 +366,7 @@ function App() {
                   <th>Pending PO</th>
                   <th>Job Work</th>
                   <th>Difference</th>
+                  <th>Proposed PO</th>
                 </tr>
               </thead>
               <tbody>
@@ -367,6 +379,7 @@ function App() {
                     <td>{comp.pendingPO.toFixed(2)}</td>
                     <td>{comp.jobWorkStock.toFixed(2)}</td>
                     <td>{comp.difference.toFixed(2)}</td>
+                    <td>{calculateProposedPO(comp.difference)}</td>
                   </tr>
                 ))}
               </tbody>
